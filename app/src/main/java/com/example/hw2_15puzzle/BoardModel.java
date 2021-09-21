@@ -62,7 +62,6 @@ public class BoardModel {
                 newArrayIndex++;
             }
         }
-
         //counts inversions
         for(int i = 0; i < invArr.length;i++) {
             for(int j = i;j < invArr.length; j++ ) {
@@ -79,7 +78,7 @@ public class BoardModel {
         for(int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if (board[i][j] == 0) {
-                    emptyRow = i + 1;
+                    emptyRow = size - (i + 1) ;
                     return emptyRow;
                 }
             }
@@ -100,7 +99,7 @@ public class BoardModel {
 
         return solvable;
     }
-    //Checks if the location tapped is in the board
+    //Converts the x,y values from onTouch into correct array indexes.
     public int findIndexX(float x) {
         int xIndex = 0;
         double xPercentage = (x - 500)/(150 * size);
@@ -129,6 +128,8 @@ public class BoardModel {
         }
         return yIndex;
     }
+
+    //checks if any empty tile is around a tile and swaps them
     public boolean moveTile(int x, int y) {
         int temp;
         if (x != size - 1 && board[x + 1][y] == 0) {
@@ -152,4 +153,20 @@ public class BoardModel {
         return true;
     }
 
+    //generates a solved board
+    public int[][]solvedBoard() {
+        int[][] solvedBoard = new int[size][size];
+        int tiles = 0;
+        int numTiles = size * size -1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                tiles++;
+                solvedBoard[i][j] = tiles;
+                if (tiles == numTiles) {
+                    break;
+                }
+            }
+        }
+        return solvedBoard;
+    }
 }
