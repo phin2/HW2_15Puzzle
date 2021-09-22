@@ -87,9 +87,8 @@ public class BoardModel {
     }
     //Checks if the current board is solvable
     public boolean checkSolvable() {
-        int emptyRow; //number of row that is empty
         boolean solvable = false;
-        int emptyR = findEmptyRow();
+        int emptyR = findEmptyRow() + 1; //number of row that is empty
         int inv = numInversions();
         if(size % 2 == 0) {//if board is even
             if((emptyR % 2 == 0 && inv % 2 != 0) || (emptyR % 2 != 0 && inv % 2 == 0)) {
@@ -129,28 +128,32 @@ public class BoardModel {
         return yIndex;
     }
 
-    //checks if any empty tile is around a tile and swaps them
+    //checks if any empty tile is around a tile and swaps them, returns true if move was successful
     public boolean moveTile(int x, int y) {
         int temp;
+        boolean moveMade = false;
         if (x != size - 1 && board[x + 1][y] == 0) {
             temp = board[x][y];
             board[x][y] = board[x + 1][y];
             board[x + 1][y] = temp;
+            moveMade = true;
         } else if (x != 0 && board[x - 1][y] == 0) {
             temp = board[x][y];
             board[x][y] = board[x - 1][y];
             board[x - 1][y] = temp;
+            moveMade = true;
         } else if (y != size - 1 && board[x][y + 1] == 0) {
             temp = board[x][y];
             board[x][y] = board[x][y + 1];
             board[x][y + 1] = temp;
+            moveMade = true;
         } else if (y!= 0 && board[x][y - 1] == 0) {
             temp = board[x][y];
             board[x][y] = board[x][y - 1];
             board[x][y - 1] = temp;
+            moveMade = true;
         }
-        moveCount++;
-        return true;
+        return moveMade;
     }
 
     //generates a solved board

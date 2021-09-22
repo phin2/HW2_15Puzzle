@@ -18,9 +18,9 @@ public class BoardController implements View.OnClickListener, View.OnTouchListen
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.shuffleBoard) {
-            bModel.shuffle();
+            bModel.shuffle(); //shuffles board
             boolean solvable = bModel.checkSolvable();
-            while (!solvable) {
+            while (!solvable) { //keeps shuffling until board is solvable
                 bModel.shuffle();
                 solvable = bModel.checkSolvable();
             }
@@ -40,6 +40,7 @@ public class BoardController implements View.OnClickListener, View.OnTouchListen
                 yIndex = bModel.findIndexY(y);
                 if(bModel.moveTile(xIndex,yIndex)) {
                 moveCount++;
+                MainActivity.setMoveCount(moveCount);
                 bView.invalidate();
                 }
             }

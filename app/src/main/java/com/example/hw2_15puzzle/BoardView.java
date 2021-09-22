@@ -15,6 +15,7 @@ public class BoardView extends SurfaceView {
     Paint matchPaint = new Paint();
     Paint boardPaint = new Paint();
     Paint numberPaint = new Paint();
+    //bounds for the board
     public int leftBound = 500;
     public int rightBound = board.size * 150 + leftBound;
     public int topBound = 200;
@@ -43,18 +44,19 @@ public class BoardView extends SurfaceView {
         for (int i = 0; i < board.size; i++) {
             for (int j = 0; j < board.size; j++) {
                 //changes the color of a tile if it is in the correct position
-                if (board.board[i][j] == solvedBoard[j][i]) {
+                if (board.board[i][j] == solvedBoard[j][i]) { //changes color of a tile if there is a match
                     boardPaint.setARGB(255,41,130,25);
                     numberPaint.setColor(Color.WHITE);
-                } else {
+                } else {  //default color of tile
                     boardPaint.setColor(Color.WHITE);
                     numberPaint.setARGB(255,78,131,252);
                 }
+                //draws the board
                 canvas.drawRoundRect(leftBound + i * 150,topBound + j * 150,leftBound + (i + 1) * 150,
                         topBound + (j + 1) * 150,20,20,boardPaint);
                 canvas.drawRoundRect(leftBound + i * 150,topBound + j * 150,leftBound + (i + 1) * 150,
                         topBound + (j + 1) * 150,20,20,linePaint);
-                if (board.board[i][j] != 0) {
+                if (board.board[i][j] != 0) { //fills the board with numbers
                     String number = String.valueOf(board.board[i][j]);
                     canvas.drawText(number, leftBound + 75 + (i * 150), topBound + 95 + (j * 150), numberPaint);
                 }
