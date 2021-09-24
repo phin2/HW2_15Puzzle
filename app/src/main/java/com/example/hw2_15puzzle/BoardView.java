@@ -9,8 +9,8 @@ import android.view.SurfaceView;
 
 public class BoardView extends SurfaceView {
 
-    private BoardModel board = new BoardModel(4);
-    private int[][] solvedBoard = board.solvedBoard();
+    private BoardModel board = new BoardModel(4); //creates a board
+    private int[][] solvedBoard = board.solvedBoard(); //creates a solved board
     Paint linePaint = new Paint();
     Paint matchPaint = new Paint();
     Paint boardPaint = new Paint();

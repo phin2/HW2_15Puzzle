@@ -20,6 +20,8 @@ public class BoardController implements View.OnClickListener, View.OnTouchListen
         if (view.getId() == R.id.shuffleBoard) {
             bModel.shuffle(); //shuffles board
             boolean solvable = bModel.checkSolvable();
+            moveCount = 0;
+            MainActivity.setMoveCount(moveCount);
             while (!solvable) { //keeps shuffling until board is solvable
                 bModel.shuffle();
                 solvable = bModel.checkSolvable();

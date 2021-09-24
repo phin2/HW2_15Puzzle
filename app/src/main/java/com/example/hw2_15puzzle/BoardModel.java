@@ -8,8 +8,8 @@ public class BoardModel {
     protected Random random = new Random();
     protected  int size;
     protected  int numTiles;
-    private int moveCount;
 
+    //Constructor for the board
     public BoardModel(int s){
         size = s;
         board = new int[size][size];
