@@ -90,7 +90,9 @@ public class BoardModel {
         boolean solvable = false;
         int emptyR = findEmptyRow() + 1; //number of row that is empty
         int inv = numInversions();
-        if(size % 2 == 0) {//if board is even
+        if(size % 2 == 0) {
+            //array is solvable if the empty slot is even and inversions are odd
+            //or if the empty row is odd and the inversion count is even
             if((emptyR % 2 == 0 && inv % 2 != 0) || (emptyR % 2 != 0 && inv % 2 == 0)) {
                 solvable = true;
             }

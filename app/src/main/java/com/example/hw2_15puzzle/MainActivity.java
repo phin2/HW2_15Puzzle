@@ -10,9 +10,13 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 /* @Author: Phi Nguyen
    @Date: 21 Sept 2021
-   Added method to make sure puzzle is solvable
+   Added method to make sure puzzle is solvable,
+   this is done using methods findEmptyRow numInversions and checkSolvable
+   We can know whether the board is solved depending on whether or not the
+   return values for findEmptyRow and numInversions are even or odd
    Tapping on a tile will move it to a nearby empty space
-   Tiles will turn green if they are in the correct position
+   If there are no empty spaces nearby nothing will happen
+   Tiles will turn green if they are in the correct position otherwise they will be white
  */
 public class MainActivity extends AppCompatActivity {
     private static TextView moveCount;
